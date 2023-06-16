@@ -1,11 +1,11 @@
 <form [formGroup]="login" (ngSubmit)="signIn()">
   <mat-form-field>
-    <mat-label>Username</mat-label>
-    <input matInput type="text" autocomplete="username">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" autocomplete="email" formControlName="email">
   </mat-form-field>
   <mat-form-field>
     <mat-label>Password</mat-label>
-    <input matInput type="password" autocomplete="password">
+    <input matInput type="password" autocomplete="password" formControlName="password">
   </mat-form-field>
   <button mat-button type="submit">Sign in</button>
 </form>

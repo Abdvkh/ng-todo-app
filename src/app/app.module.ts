@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ErrorCatchingInterceptor} from "./error-catching.interceptor";
+import {TokenInterceptor} from "./auth/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,12 @@ import {ErrorCatchingInterceptor} from "./error-catching.interceptor";
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorCatchingInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
