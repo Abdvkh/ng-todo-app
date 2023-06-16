@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {EntityActionOptions, EntityCollectionServiceBase, EntityCollectionServiceElementsFactory} from "@ngrx/data";
-import {Todo} from "./todo";
 import {map, Observable} from "rxjs";
+
+import {Todo} from "./todo";
 
 @Injectable({
   providedIn: 'root'

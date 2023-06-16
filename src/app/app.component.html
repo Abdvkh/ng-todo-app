@@ -1,6 +1,8 @@
 <p>
   <mat-toolbar>
     <span>To Do App</span>
+    <span class="spacer"></span>
+    <button *ngIf="isLoggedIn" mat-button (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
   </mat-toolbar>
 </p>
 <router-outlet></router-outlet>

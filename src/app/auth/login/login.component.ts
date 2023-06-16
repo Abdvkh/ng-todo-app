@@ -24,6 +24,7 @@ export class LoginComponent {
   public signIn() {
     this.authService.authenticate(this.login.value).subscribe((response) => {
       this.authService.token = response.token;
+      this.authService.userID = response.user_id;
       const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
       this.router.navigateByUrl(returnUrl);
     })

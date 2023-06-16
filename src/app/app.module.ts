@@ -9,13 +9,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from "@angular/material/form-field";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { entityConfig } from './entity-metadata';
-import {ErrorCatchingInterceptor} from "./error-catching.interceptor";
-import {TokenInterceptor} from "./auth/token.interceptor";
-import {DrfResponseInterceptor} from "./drf-response.interceptor";
+import {ErrorCatchingInterceptor} from "./interceptors/error-catching.interceptor";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {DrfResponseInterceptor} from "./interceptors/drf-response.interceptor";
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import {DrfResponseInterceptor} from "./drf-response.interceptor";
     MatToolbarModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
   ],
   providers: [
     {

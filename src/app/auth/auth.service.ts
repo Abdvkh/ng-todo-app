@@ -17,6 +17,16 @@ export class AuthService {
   get token(): string | null {
     return localStorage.getItem('token');
   }
+  set userID(userID: string)  {
+    localStorage.setItem('userID', userID);
+  }
+  get userID(): string | null {
+    return localStorage.getItem('userID');
+  }
+
+  get isLoggenIn(): boolean {
+    return !!this.token && !!this.userID;
+  }
 
   constructor(
     private httpClient: HttpClient
@@ -25,4 +35,10 @@ export class AuthService {
   public authenticate(body: any/*{username: string, password: string}*/) {
     return this.httpClient.post<LoginResponse>('/api/auth/token/login/', body);
   }
+
+  public logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+  }
+
 }

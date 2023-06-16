@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo-app';
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggenIn;
+  }
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {
+  }
+
+  public logout() {
+    this.authService.logout();
+    this.router.navigate(['auth', 'login']);
+  }
 }

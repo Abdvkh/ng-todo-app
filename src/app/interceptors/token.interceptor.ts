@@ -9,7 +9,7 @@ import {
 import {Router} from "@angular/router";
 import {catchError, Observable, throwError} from 'rxjs';
 
-import {AuthService} from "./auth.service";
+import {AuthService} from "../auth/auth.service";
 import {NotificationsService} from "../notifications.service";
 
 @Injectable()

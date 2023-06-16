@@ -1,12 +1,35 @@
-<form [formGroup]="todo" (ngSubmit)="addToDo()">
-    <input placeholder="e.g. To buy sneakers" formControlName="title">
+<form class="display-flex justify-content-center" [formGroup]="newTodo" (ngSubmit)="addToDo()">
+  <mat-form-field class="w-90" appearance="fill">
+    <mat-label>Add new todo</mat-label>
+    <input matInput placeholder="e.g. To buy sneakers" formControlName="title">
+    <button matSuffix mat-icon-button aria-label="Add" type="submit" [disabled]="!newTodo.valid">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-form-field>
 </form>
 
-<p *ngIf="loading$ | async">Loading...</p>
+<mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+
 <ul *ngFor="let todo of todos$ | async">
   <li class="display-flex align-items-center">
-    <mat-checkbox [checked]="todo.completed" matTooltip="Check item to complete"></mat-checkbox>
-    <div contentEditable [ngClass]="{'text-line-through': todo.completed}" matTooltip="Press to edit item title">{{todo.title}}</div>
-    <button mat-button matTooltip="Press to delete item"><mat-icon>close</mat-icon></button>
+    <mat-checkbox
+      [checked]="todo.completed"
+      matTooltip="Check item to complete"
+      (change)="checkToDo($event, todo)"
+    ></mat-checkbox>
+    <div
+      class="word-wrap-anywhere"
+      contentEditable
+      cdkObserveContent
+      debounce="1000"
+      matTooltip="Press to edit item title"
+      [ngClass]="{'text-line-through': todo.completed}"
+      (cdkObserveContent)="changeTitle($event, todo)"
+    >{{todo.title}}</div>
+    <button
+      mat-button
+      matTooltip="Press to delete item"
+      (click)="delete(todo.id)"
+    ><mat-icon>close</mat-icon></button>
   </li>
 </ul>

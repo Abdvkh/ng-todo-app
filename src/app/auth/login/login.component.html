@@ -1,4 +1,4 @@
-<form [formGroup]="login" (ngSubmit)="signIn()">
+<form [formGroup]="login" (ngSubmit)="signIn()" class="display-flex f-direction-column align-items-center">
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input matInput type="email" autocomplete="email" formControlName="email">
