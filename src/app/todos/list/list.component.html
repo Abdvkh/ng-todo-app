@@ -1,1 +1,12 @@
-<p *ngFor="let todo of todos$ | async">{{todo.title}}</p>
+<form [formGroup]="todo" (ngSubmit)="addToDo()">
+    <input placeholder="e.g. To buy sneakers" formControlName="title">
+</form>
+
+<p *ngIf="loading$ | async">Loading...</p>
+<ul *ngFor="let todo of todos$ | async">
+  <li class="display-flex align-items-center">
+    <mat-checkbox [checked]="todo.completed" matTooltip="Check item to complete"></mat-checkbox>
+    <div contentEditable [ngClass]="{'text-line-through': todo.completed}" matTooltip="Press to edit item title">{{todo.title}}</div>
+    <button mat-button matTooltip="Press to delete item"><mat-icon>close</mat-icon></button>
+  </li>
+</ul>
