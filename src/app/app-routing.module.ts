@@ -7,11 +7,11 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [authGuard],
-    loadChildren: () => import('./todos/todos-routing.module').then(_ => _.TodosRoutingModule),
+    loadChildren: () => import('./todos/todos.module').then(_ => _.TodosModule),
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth-routing.module').then(_ => _.AuthRoutingModule),
+    loadChildren: () => import('./auth/auth.module').then(_ => _.AuthModule),
   },
 ];
 
