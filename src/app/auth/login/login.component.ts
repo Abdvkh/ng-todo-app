@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {AuthService} from "../auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,6 @@ export class LoginComponent {
 
   public signIn() {
     this.authService.authenticate(this.login.value).subscribe((response) => {
-      this.authService.isLoggedIn = !!response.token;
       this.authService.token = response.token;
       const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
       this.router.navigateByUrl(returnUrl);

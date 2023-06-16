@@ -10,11 +10,12 @@ import {Router} from "@angular/router";
 import {catchError, Observable, throwError} from 'rxjs';
 
 import {AuthService} from "./auth.service";
+import {NotificationsService} from "../notifications.service";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
   constructor(
+    private notificationService: NotificationsService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -30,6 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
+            this.notificationService.error('Unauthorized')
             this.router.navigate(['auth', 'login']);
           }
         }

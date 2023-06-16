@@ -11,18 +11,11 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private _isLoggedIn = false;
   set token(token: string)  {
     localStorage.setItem('token', token);
   }
   get token(): string | null {
     return localStorage.getItem('token');
-  }
-  set isLoggedIn(state: boolean)  {
-    this._isLoggedIn = state;
-  }
-  get isLoggedIn(): boolean {
-    return this._isLoggedIn;
   }
 
   constructor(
